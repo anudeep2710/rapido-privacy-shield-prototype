@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Rapido Privacy Shield Prototype</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="prototype-stage">
+      <section class="brief-panel" aria-label="Prototype summary">
+        <div class="brand-row">
+          <img src="assets/rapido-logo.png" alt="Rapido" />
+          <span>Privacy Shield</span>
+        </div>
+        <h1>Purpose-Bound Ride Data</h1>
+        <p>
+          A rider-facing flow where contact, pickup location, and trip context
+          are shared only for the ride purpose, then expire.
+        </p>
+        <div class="journey-list" id="journeyList" aria-label="Prototype screens"></div>
+        <div class="case-note">
+          <strong>Prototype scope</strong>
+          <span>Happy path plus data-rights actions for deletion and misuse reporting.</span>
+        </div>
+      </section>
+
+      <section class="phone-shell" aria-label="Rapido app prototype">
+        <div class="phone-top">
+          <span></span>
+        </div>
+        <div class="app-screen">
+          <header class="app-header">
+            <img src="assets/rapido-logo.png" alt="Rapido" />
+            <button class="icon-button" type="button" data-action="open-privacy">
+              <span class="shield-mark">PS</span>
+            </button>
+          </header>
+
+          <section class="screen active" data-screen="booking" aria-label="Booking confirmation">
+            <div class="screen-title">
+              <p class="eyebrow">Bike taxi</p>
+              <h2>Confirm your ride</h2>
+            </div>
+
+            <div class="route-card">
+              <div class="route-line">
+                <span class="pin pickup"></span>
+                <div>
+                  <label>Pickup</label>
+                  <strong>Indiranagar Metro, Gate B</strong>
+                </div>
+              </div>
+              <div class="route-stem"></div>
+              <div class="route-line">
+                <span class="pin drop"></span>
+                <div>
+                  <label>Drop</label>
+                  <strong>Vedantu office, Bellandur</strong>
+                </div>
+              </div>
+            </div>
+
+            <div class="privacy-banner">
+              <div class="shield-mark large">PS</div>
+              <div>
+                <strong>Privacy Shield is on</strong>
+                <span>Only ride-essential data is shared with your Captain.</span>
+              </div>
+            </div>
+
+            <button class="secondary-action" type="button" data-action="manage-consent">
+              Manage optional data use
+            </button>
+
+            <div class="fare-row">
+              <div>
+                <label>Estimated fare</label>
+                <strong>Rs. 86</strong>
+              </div>
+              <div>
+                <label>Pickup ETA</label>
+                <strong>3 min</strong>
+              </div>
+            </div>
+
+            <button class="primary-action" type="button" data-next="captain">
+              Book with Privacy Shield
+            </button>
+          </section>
+
+          <section class="screen" data-screen="captain" aria-label="Captain assigned">
+            <div class="screen-title">
+              <p class="eyebrow">Captain assigned</p>
+              <h2>Ravi K. is on the way</h2>
+            </div>
+
+            <div class="captain-card">
+              <div class="avatar">RK</div>
+              <div>
+                <strong>Ravi K.</strong>
+                <span>KA 05 HT 2147 | 4.86 rating</span>
+              </div>
+              <b>2 min</b>
+            </div>
+
+            <div class="map-card small-map">
+              <div class="street horizontal"></div>
+              <div class="street vertical"></div>
+              <div class="route-path"></div>
+              <span class="map-pin rider"></span>
+              <span class="map-pin captain"></span>
+            </div>
+
+            <div class="privacy-banner compact">
+              <div class="shield-mark">PS</div>
+              <div>
+                <strong>Raw phone number hidden</strong>
+                <span>Calls and chats stay inside Rapido relay.</span>
+              </div>
+            </div>
+
+            <div class="action-grid">
+              <button type="button" data-action="call-captain">Call via Rapido</button>
+              <button type="button" data-action="chat-captain">Chat via Rapido</button>
+            </div>
+
+            <button class="primary-action" type="button" data-next="pickup">
+              Continue to pickup
+            </button>
+          </section>
+
+          <section class="screen" data-screen="pickup" aria-label="Pickup guidance">
+            <div class="screen-title">
+              <p class="eyebrow">Pickup guidance</p>
+              <h2>Exact pin shared for this ride</h2>
+            </div>
+
+            <div class="map-card large-map">
+              <div class="street horizontal"></div>
+              <div class="street vertical"></div>
+              <div class="street diagonal"></div>
+              <div class="route-path pickup-route"></div>
+              <span class="map-pin rider"></span>
+              <span class="map-pin captain"></span>
+              <div class="map-label">Gate B</div>
+            </div>
+
+            <div class="data-lease-card">
+              <div>
+                <strong>Trip Data Lease</strong>
+                <span>Captain can use your exact pickup until pickup is complete.</span>
+              </div>
+              <b>Active</b>
+            </div>
+
+            <div class="action-grid">
+              <button type="button" data-action="change-pickup">Change pickup</button>
+              <button type="button" data-action="open-privacy">Privacy details</button>
+            </div>
+
+            <button class="primary-action" type="button" data-next="complete">
+              Complete ride
+            </button>
+          </section>
+
+          <section class="screen" data-screen="complete" aria-label="Ride completed">
+            <div class="screen-title">
+              <p class="eyebrow">Ride completed</p>
+              <h2>Captain access expired</h2>
+            </div>
+
+            <div class="success-card">
+              <div class="check-ring">✓</div>
+              <strong>Your ride data lease closed at 8:42 PM</strong>
+              <span>Ravi can no longer see your exact pickup or call you through the ride relay.</span>
+            </div>
+
+            <div class="receipt-card">
+              <div>
+                <label>Fare paid</label>
+                <strong>Rs. 86</strong>
+              </div>
+              <div>
+                <label>Trip ID</label>
+                <strong>RP-4182</strong>
+              </div>
+            </div>
+
+            <button class="secondary-action" type="button" data-action="report-misuse">
+              Report post-ride contact
+            </button>
+
+            <button class="primary-action" type="button" data-next="details">
+              View privacy details
+            </button>
+          </section>
+
+          <section class="screen" data-screen="details" aria-label="Ride privacy details">
+            <div class="screen-title">
+              <p class="eyebrow">Ride Privacy Details</p>
+              <h2>What was shared</h2>
+            </div>
+
+            <div class="data-list">
+              <article>
+                <span class="status expired">Expired</span>
+                <strong>Masked contact relay</strong>
+                <p>Shared with Captain Ravi for pickup coordination until 8:42 PM.</p>
+              </article>
+              <article>
+                <span class="status expired">Expired</span>
+                <strong>Exact pickup pin</strong>
+                <p>Shared until pickup was confirmed. Post-ride view shows only the area.</p>
+              </article>
+              <article>
+                <span class="status retained">Limited</span>
+                <strong>Fare and route proof</strong>
+                <p>Retained for disputes, fraud checks, tax, and safety investigations.</p>
+              </article>
+              <article>
+                <span class="status off">Off</span>
+                <strong>Optional personalization</strong>
+                <p>Not used because optional consent is off for this trip.</p>
+              </article>
+            </div>
+
+            <div class="action-grid">
+              <button type="button" data-action="report-misuse">Report misuse</button>
+              <button type="button" data-action="request-deletion">Request deletion</button>
+            </div>
+
+            <button class="primary-action" type="button" data-action="download-summary">
+              Get access summary
+            </button>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <div class="modal-backdrop" id="modalBackdrop" hidden></div>
+    <aside class="bottom-sheet" id="bottomSheet" aria-live="polite" aria-label="Action details" hidden>
+      <button class="sheet-close" type="button" data-action="close-sheet">Close</button>
+      <div id="sheetContent"></div>
+    </aside>
+
+    <script src="app.js"></script>
+  </body>
+</html>
